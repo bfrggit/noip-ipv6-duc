@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-interface='INTERFACE' # e.g. enp3s0
 user='EMAIL'
 pass='PASSWORD'
 hostname='HOSTNAME'
@@ -12,7 +11,8 @@ addrv4='0.0.0.0'
 lastaddr='::'
 
 update_ip () {
-    addr=$(ip -6 addr show dev "${interface}" | sed -e'/inet6/,/scope global/s/^.*inet6 \([^ ]*\)\/.*scope global.*$/\1/;t;d')
+    addr=$(curl -s ipv6.icanhazip.com | xargs echo -n)
+
     if [[ -z ${addr} ]]; then
         :
     elif [[ ${lastaddr} != ${addr} ]]; then
