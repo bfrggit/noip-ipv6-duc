@@ -1,6 +1,7 @@
 [Unit]
 Description=No-IP DUC
-After=network.target
+After=network.target network-online.target
+Requires=network-online.target
 StartLimitIntervalSec=3600
 StartLimitBurst=10
 
